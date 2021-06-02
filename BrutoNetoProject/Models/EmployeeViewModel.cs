@@ -47,6 +47,8 @@ namespace BrutoNetoProject.Models
 
         [Display(Name = "Bruto iznos plate")]
         public decimal Bruto { get; set; }
+        public AssociatedCostViewModel AssociatedCost { get; set; }
+
 
         public static EmployeeViewModel MapFrom(EmployeeDto employeeDto)
         {
@@ -62,6 +64,7 @@ namespace BrutoNetoProject.Models
             employeeViewModel.City = employeeDto.City;
             employeeViewModel.Neto = employeeDto.Neto;
             employeeViewModel.Bruto = employeeDto.Bruto;
+            employeeViewModel.AssociatedCost = AssociatedCostViewModel.MapFrom(employeeDto.AssociatedCost);
 
             return employeeViewModel;
         }

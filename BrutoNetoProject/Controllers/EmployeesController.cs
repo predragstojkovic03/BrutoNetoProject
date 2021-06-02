@@ -17,7 +17,7 @@ namespace BrutoNetoProject.Controllers
 
         public EmployeesController(IConfiguration configuration)
         {
-            string connectionString = configuration["ConnectionStrings:DefaultConnection"];
+            string connectionString = configuration["ConnectionStrings:Kuca"];
             _employeeDal = new EmployeeDal(connectionString);
         }
 

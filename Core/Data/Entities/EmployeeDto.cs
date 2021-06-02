@@ -11,5 +11,6 @@
         public string City { get; set; }
         public decimal Neto { get; set; }
         public decimal Bruto { get; set; }
+        public AssociatedCostDto AssociatedCost { get; set; }
     }
 }

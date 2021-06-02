@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
+using Infrasctructure.Calculations;
 
 namespace Infrasctructure.Data.DAL
 {
@@ -36,6 +37,8 @@ namespace Infrasctructure.Data.DAL
                         {
                             EmployeeDto employee = new EmployeeDto();
                             employee = MapFromReader(rdr);
+
+                            employee.AssociatedCost = Calculation.CalculateAssociatedCost(employee.Neto);
 
                             employees.Add(employee);
                         }
@@ -72,7 +75,8 @@ namespace Infrasctructure.Data.DAL
         {
             try
             {
-                employee.Bruto = CalculateBruto(employee.Neto);
+                employee.AssociatedCost =  Calculation.CalculateAssociatedCost(employee.Neto);
+                employee.Bruto = employee.AssociatedCost.SumCost() + employee.Neto;
 
                 string sqlProcedure = "CreateEmployee";
                 
@@ -85,7 +89,7 @@ namespace Infrasctructure.Data.DAL
                     command.Parameters.AddWithValue("@Surname", employee.Surname);
                     command.Parameters.AddWithValue("@PhoneNumber", employee.PhoneNumber);
                     command.Parameters.AddWithValue("@Adress", employee.Adress);
-                    command.Parameters.AddWithValue("@Email", employee.Adress);
+                    command.Parameters.AddWithValue("@Email", employee.Email);
                     command.Parameters.AddWithValue("@City", employee.City);
                     command.Parameters.AddWithValue("@Neto", employee.Neto);
                     command.Parameters.AddWithValue("@Bruto", employee.Bruto);
@@ -125,6 +129,8 @@ namespace Infrasctructure.Data.DAL
                         if (await rdr.ReadAsync().ConfigureAwait(false))
                         {
                             employee = MapFromReader(rdr);
+
+                            employee.AssociatedCost = Calculation.CalculateAssociatedCost(employee.Neto);
                         }
                     }
                 }
@@ -169,7 +175,8 @@ namespace Infrasctructure.Data.DAL
         {
             try
             {
-                employee.Bruto = CalculateBruto(employee.Neto);
+                employee.AssociatedCost = Calculation.CalculateAssociatedCost(employee.Neto);
+                employee.Bruto = employee.AssociatedCost.SumCost() + employee.Neto;
 
                 string sqlProcedure = "EditEmployee";
 
@@ -183,7 +190,7 @@ namespace Infrasctructure.Data.DAL
                     command.Parameters.AddWithValue("@Surname", employee.Surname);
                     command.Parameters.AddWithValue("@PhoneNumber", employee.PhoneNumber);
                     command.Parameters.AddWithValue("@Adress", employee.Adress);
-                    command.Parameters.AddWithValue("@Email", employee.Adress);
+                    command.Parameters.AddWithValue("@Email", employee.Email);
                     command.Parameters.AddWithValue("@City", employee.City);
                     command.Parameters.AddWithValue("@Neto", employee.Neto);
                     command.Parameters.AddWithValue("@Bruto", employee.Bruto);
@@ -200,31 +207,6 @@ namespace Infrasctructure.Data.DAL
             }
 
             return true;
-        }
-
-        private decimal CalculateBruto(decimal neto)
-        {
-            decimal bruto = 0;
-            decimal result = 0;
-
-            if (neto < 28402)
-                bruto = ((neto - 1830) + (decimal)0.199 * 28402) / (decimal)0.9;
-
-            else if (neto > 405750)
-                bruto = ((neto - 1830) + (decimal)0.199 * 405750) / (decimal)0.9;
-
-            else
-                bruto = (neto - 1830) / (decimal)0.701;
-
-            result = neto;
-            result += (bruto - 18300) * (decimal)0.1;
-            result += bruto * (decimal)0.14;
-            result += bruto * (decimal)0.0515;
-            result += bruto * (decimal)0.0075;
-            result += bruto * (decimal)0.115;
-            result += bruto * (decimal)0.0515;
-
-            return result;
         }
     }
 }
