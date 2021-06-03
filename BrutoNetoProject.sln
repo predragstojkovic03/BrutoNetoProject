@@ -11,12 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrutoNetoProject", "BrutoNe
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{4057EA82-C17C-4FE8-BBEC-638C06C81413}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{07484177-1E3E-440E-96A1-9FDCC1E6B5C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{07484177-1E3E-440E-96A1-9FDCC1E6B5C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrasctructure", "Infrasctructure\Infrasctructure.csproj", "{0EE620F4-9A9F-4E0B-8F59-DD637889C68C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrasctructure", "Infrasctructure\Infrasctructure.csproj", "{0EE620F4-9A9F-4E0B-8F59-DD637889C68C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{07484177-1E3E-440E-96A1-9FDCC1E6B5C4} = {07484177-1E3E-440E-96A1-9FDCC1E6B5C4}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{F3F2F8F7-FEAD-4366-B942-E512892785BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,10 @@ Global
 		{0EE620F4-9A9F-4E0B-8F59-DD637889C68C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EE620F4-9A9F-4E0B-8F59-DD637889C68C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EE620F4-9A9F-4E0B-8F59-DD637889C68C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3F2F8F7-FEAD-4366-B942-E512892785BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3F2F8F7-FEAD-4366-B942-E512892785BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3F2F8F7-FEAD-4366-B942-E512892785BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3F2F8F7-FEAD-4366-B942-E512892785BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
